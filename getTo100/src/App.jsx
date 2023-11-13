@@ -1,12 +1,17 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [players, setPlayers] = useState([]);
 
-  return <></>;
+  return (
+    <>
+      {players.map((player, index) => (
+        <Game key={index} player={player} />
+      ))}
+    </>
+  );
 }
 
 export default App;
