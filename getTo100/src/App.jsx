@@ -7,9 +7,8 @@ function App() {
 
   return (
     <>
-      {players.map((player, index) => (
-        <Game key={index} player={player} />
-      ))}
+      <Header />
+      <Screen players={players} />
     </>
   );
 }
