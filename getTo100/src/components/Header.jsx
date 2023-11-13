@@ -45,10 +45,11 @@ function Header(props) {
               setPlayerName(e.target.value);
             }}
           />
+          <br/>
           <button onClick={() => addAndIdentify(playerName)}>add player</button>
         </div>
 
-        <button>start games</button>
+        <button onClick = {props.moveTurn}>start games</button>
       </>
     );
   }
