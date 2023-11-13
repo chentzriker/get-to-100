@@ -1,25 +1,19 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import "./App.css";
+import Screen from "./components/Screen";
 
 function App() {
   const [players, setPlayers] = useState([]);
 
-  function addPlayerToGame(user){
-    setPlayers((prev) => [...prev, user])
+  function addPlayerToGame(user) {
+    setPlayers((prev) => [...prev, user]);
   }
 
   return (
     <>
-<<<<<<< HEAD
-      <Header />
+      <Header addPlayerToGame={addPlayerToGame} />
       <Screen players={players} />
-=======
-    <Header addPlayerToGame ={addPlayerToGame}/>
-      {/* {players.map((player, index) => (
-        <Game key={index} player={player} />
-      ))} */}
->>>>>>> dbb6a981be8185e05d599ff5ee2356736936e942
     </>
   );
 }

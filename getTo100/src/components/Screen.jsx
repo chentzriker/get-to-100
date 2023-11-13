@@ -1,3 +1,4 @@
+import Game from "./Game";
 function Screen(props) {
   return (
     <div>
@@ -7,3 +8,5 @@ function Screen(props) {
     </div>
   );
 }
+
+export default Screen;
