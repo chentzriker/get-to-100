@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Header from "./components/Header";
+import Screen from "./components/Screen"
 import "./App.css";
 
 function App() {
@@ -11,15 +12,8 @@ function App() {
 
   return (
     <>
-<<<<<<< HEAD
-      <Header />
-      <Screen players={players} />
-=======
     <Header addPlayerToGame ={addPlayerToGame}/>
-      {/* {players.map((player, index) => (
-        <Game key={index} player={player} />
-      ))} */}
->>>>>>> dbb6a981be8185e05d599ff5ee2356736936e942
+      <Screen players={players} />
     </>
   );
 }
