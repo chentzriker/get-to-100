@@ -10,7 +10,6 @@ function Game(props) {
   const [scores, setScores] = useState("");
 
   let isTurn = props.turn === props.index;
-  console.log(isTurn)
   function arrayOfScoresToString() {
     let text = "";
     props.player.scores.map((item) => (text += item.toString() + ","));
@@ -18,8 +17,9 @@ function Game(props) {
   }
 
   function changeNumber(action) {
-    if (action === "-") {
+    if (action === "-") { 
       setNumber((prev) => prev - 1);
+      
     }
     if (action === "+") {
       setNumber((prev) => prev + 1);
@@ -31,11 +31,17 @@ function Game(props) {
       setNumber((prev) => Math.floor(prev / 2));
     }
     setNumSteps((prev) => prev + 1);
+    props.moveTurn();
+    
+  }
+  function afterChange(){
+    console.log(number)
     if (number === 100) {
       setHasWon(true);
     }
+    
   }
-
+ 
   const divEndGame = (
     <div>
       <button>quit</button>
@@ -44,7 +50,7 @@ function Game(props) {
   );
   const buttons = (
     <div>
-      <button  onClick={() => changeNumber("+")} disabled = {!isTurn}>+1</button>
+      <button  onClick={() => changeNumber("+")} onMouseUp={afterChange} disabled = {!isTurn}>+1</button>
       <button onClick={() => changeNumber("-")} disabled = {!isTurn}>-1</button>
       <button onClick={() => changeNumber("*")} disabled = {!isTurn}>*2</button>
       <button onClick={() => changeNumber("/")} disabled = {!isTurn}>/2</button>

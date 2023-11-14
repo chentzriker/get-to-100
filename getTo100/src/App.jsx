@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       <Header addPlayerToGame={addPlayerToGame} moveTurn={moveTurn} />
-      <Screen players={players} turn={turn} />
+      <Screen players={players} turn={turn} moveTurn={moveTurn}/>
     </>
   );
 }
