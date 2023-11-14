@@ -11,6 +11,10 @@ function App() {
     setPlayers((prev) => [...prev, user]);
   }
 
+  function quitGame(index) {
+    setPlayers((prev) => { let clone = [...prev]; return clone.filter(!index) })
+  }
+
   function moveTurn() {
     if (turn === players.length - 1) {
       setTurn(0)
@@ -23,7 +27,7 @@ function App() {
   return (
     <>
       <Header addPlayerToGame={addPlayerToGame} moveTurn={moveTurn} />
-      <Screen players={players} turn={turn} moveTurn={moveTurn}/>
+      <Screen players={players} turn={turn} moveTurn={moveTurn} quitGame={quitGame} />
     </>
   );
 }
