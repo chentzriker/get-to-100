@@ -12,6 +12,7 @@ function Game(props) {
     setScores(text);
   }
 
+  const a = number === 100;
   function changeNumber(action) {
     if (action === "-") {
       setNumber((prev) => prev - 1);
@@ -26,8 +27,15 @@ function Game(props) {
       setNumber((prev) => Math.floor(prev / 2));
     }
     setNumSteps((prev) => prev + 1);
-    if (number === 100) {
-      setHasWon(true);
+    afterChange();
+  }
+  function afterChange() {
+    console.log(number);
+    if (a) {
+      // setHasWon(true);
+      console.log("hi");
+      props.player.scores.push(numSteps);
+      arrayOfScoresToString();
     }
   }
 
@@ -50,7 +58,7 @@ function Game(props) {
       <h3>player : {props.player.name}</h3>
       <h4>number: {number}</h4>
       <h4>steps: {numSteps}</h4>
-      {hasWon ? divEndGame : buttons}
+      {number === 100 ? divEndGame : buttons}
       <h4>scores: {scores}</h4>
     </div>
   );
