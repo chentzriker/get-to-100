@@ -9,24 +9,23 @@ function Header(props) {
     const users = JSON.parse(localStorage.getItem("users"));
     for (let user of users) {
       if (user.name === playerName) {
-        user.isWon = false;
-        user.moves = 0;
         props.addPlayerToGame(user);
+        
       }
     }
-    let newUser = {
+    const newUser = {
       name: playerName,
       gameCount: 0,
       scores: [],
-      isWon: false,
-      moves: 0,
+     
     };
     users.push(newUser);
     props.addPlayerToGame(newUser);
     localStorage.setItem("users", JSON.stringify(users));
   }
 
-  let isStarted = false;
+  
+  const [isStarted, setIsStarted]= useState(false) 
 
   if (isStarted) {
     return (
@@ -37,7 +36,7 @@ function Header(props) {
   } else {
     return (
       <>
-        <h1>Get To 100 (game in progress) </h1>
+        <h1>Get To 100 </h1>
         <div>
           <input
             type="text"
@@ -45,10 +44,11 @@ function Header(props) {
               setPlayerName(e.target.value);
             }}
           />
-          <button onClick={() => addAndIdentify(playerName)}>add player</button>
+          <br />
+          <button onClick={() => {return addAndIdentify(playerName)}}>add player</button>
         </div>
 
-        <button>start games</button>
+        <button onClick={() => { setIsStarted(true); return props.moveTurn() }}>start games</button>
       </>
     );
   }
