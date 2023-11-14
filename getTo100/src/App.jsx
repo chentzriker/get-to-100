@@ -12,7 +12,9 @@ function App() {
   }
 
   function quitGame(index) {
-    setPlayers((prev) => { let clone = [...prev]; return clone.filter(!index) })
+    console.log(index)
+    setPlayers((prev) => { let clone = [...prev]; return clone.filter((c,i)=>i!==index) })
+    console.log(players);
   }
 
   function moveTurn() {
