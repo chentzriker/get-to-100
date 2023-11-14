@@ -3,29 +3,33 @@ import StartGame from "./StartGame";
 
 function Header(props) {
   const [playerName, setPlayerName] = useState("");
-  localStorage.setItem("users", JSON.stringify([]));
 
   function addAndIdentify(playerName) {
-    const users = JSON.parse(localStorage.getItem("users"));
+    let found = false;
+    const users = JSON.parse(localStorage.getItem("users")) || [];
     for (let user of users) {
       if (user.name === playerName) {
         props.addPlayerToGame(user);
-        
+        found = true;
       }
     }
-    const newUser = {
-      name: playerName,
-      gameCount: 0,
-      scores: [],
-     
-    };
-    users.push(newUser);
-    props.addPlayerToGame(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
+    console.log(found);
+    if (found === false) {
+      const newUser = {
+        name: playerName,
+        gameCount: 0,
+        scores: [],
+      };
+      users.push(newUser);
+      props.addPlayerToGame(newUser);
+      console.log(users);
+      const a = JSON.stringify(users);
+      console.log("g", a, typeof a);
+      localStorage.setItem("users", a);
+    }
   }
 
-  
-  const [isStarted, setIsStarted]= useState(false) 
+  const [isStarted, setIsStarted] = useState(false);
 
   if (isStarted) {
     return (
@@ -45,10 +49,23 @@ function Header(props) {
             }}
           />
           <br />
-          <button onClick={() => {return addAndIdentify(playerName)}}>add player</button>
+          <button
+            onClick={() => {
+              return addAndIdentify(playerName);
+            }}
+          >
+            add player
+          </button>
         </div>
 
-        <button onClick={() => { setIsStarted(true); return props.moveTurn() }}>start games</button>
+        <button
+          onClick={() => {
+            setIsStarted(true);
+            return props.moveTurn();
+          }}
+        >
+          start games
+        </button>
       </>
     );
   }

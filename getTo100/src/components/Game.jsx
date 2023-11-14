@@ -11,7 +11,13 @@ function Game(props) {
 
   let isTurn = props.turn === props.index;
   function arrayOfScoresToString() {
+    const usersData = JSON.parse(localStorage.getItem("users"));
     let text = "";
+    [...usersData]
+      .find((user) => user.name === props.player.name)
+      .scores.push(numSteps + 1);
+
+    localStorage.setItem("users", JSON.stringify(usersData));
     props.player.scores.map((item) => (text += item.toString() + ","));
     setScores(text);
   }
@@ -37,17 +43,23 @@ function Game(props) {
     setNumSteps((prev) => prev + 1);
     props.moveTurn();
     if (num === 100) {
-      console.log("hi");
+      props.player.scores.push(numSteps + 1);
+      arrayOfScoresToString();
       setHasWon(true);
     }
   }
 
   const divEndGame = (
     <div>
-      <button onClick = {()=> props.quitGame(props.index)}>quit</button>
-      <button>start new game</button>
+      <button onClick={() => props.quitGame(props.index)}>quit</button>
+      <button onClick={newGame}>start new game</button>
     </div>
   );
+  function newGame() {
+    setNumber(Math.floor(Math.random() * 100));
+    setNumSteps(0);
+    setHasWon(false);
+  }
   const buttons = (
     <div>
       <button onClick={() => changeNumber("+")} disabled={!isTurn}>
