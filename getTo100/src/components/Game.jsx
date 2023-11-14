@@ -7,7 +7,7 @@ function Game(props) {
   const [number, setNumber] = useState(Math.floor(Math.random() * 100));
   const [numSteps, setNumSteps] = useState(0);
   const [hasWon, setHasWon] = useState(false);
-  const [scores, setScores] = useState("");
+  const [scores, setScores] = useState(props.player.scores);
 
   let isTurn = props.turn === props.index;
   function arrayOfScoresToString() {
