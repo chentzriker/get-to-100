@@ -13,12 +13,13 @@ function Game(props) {
   function arrayOfScoresToString() {
     const usersData = JSON.parse(localStorage.getItem("users"));
     let text = "";
-    [...usersData]
-      .find((user) => user.name === props.player.name)
-      .scores.push(numSteps + 1);
-
+    const copyUsers = [...usersData].find(
+      (user) => user.name === props.player.name
+    ).scores;
+    copyUsers.push(numSteps + 1);
+    copyUsers.push(",");
     localStorage.setItem("users", JSON.stringify(usersData));
-    props.player.scores.map((item) => (text += item.toString() + ","));
+    props.player.scores.map((item) => (text += item.toString()));
     setScores(text);
   }
 
@@ -41,12 +42,14 @@ function Game(props) {
       setNumber((prev) => Math.floor(prev / 2));
     }
     setNumSteps((prev) => prev + 1);
-    props.moveTurn();
     if (num === 100) {
       props.player.scores.push(numSteps + 1);
+      props.player.scores.push(",");
       arrayOfScoresToString();
       setHasWon(true);
+      return;
     }
+    props.moveTurn();
   }
 
   const divEndGame = (
