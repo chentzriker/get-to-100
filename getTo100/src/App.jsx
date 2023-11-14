@@ -4,6 +4,7 @@ import Screen from "./components/Screen";
 import "./App.css";
 
 function App() {
+
   const [players, setPlayers] = useState([]);
   const [turn, setTurn] = useState(-1);
 
@@ -30,7 +31,7 @@ function App() {
 
   return (
     <>
-      <Header addPlayerToGame={addPlayerToGame} moveTurn={moveTurn} />
+      <Header addPlayerToGame={addPlayerToGame} moveTurn={moveTurn} players={players} />
       <Screen
         players={players}
         turn={turn}

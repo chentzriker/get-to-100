@@ -1,31 +1,8 @@
 import { useState } from "react";
+import AddAndIdentify from "./AddAndIdentify";
 
 function Header(props) {
   const [playerName, setPlayerName] = useState("");
-
-  function addAndIdentify(playerName) {
-    let found = false;
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    for (let user of users) {
-      if (user.name === playerName) {
-        props.addPlayerToGame(user);
-        found = true;
-      }
-    }
-    console.log(found);
-    if (found === false) {
-      const newUser = {
-        name: playerName,
-        gameCount: 0,
-        scores: [],
-      };
-      users.push(newUser);
-      props.addPlayerToGame(newUser);
-      const stringifiedUsers = JSON.stringify(users);
-      localStorage.setItem("users", stringifiedUsers);
-    }
-  }
-
   const [isStarted, setIsStarted] = useState(false);
 
   if (isStarted) {
@@ -47,9 +24,10 @@ function Header(props) {
           />
           <br />
           <button
-            onClick={() => {
-              return addAndIdentify(playerName);
-            }}
+            onClick={() => (
+              AddAndIdentify (playerName, props.addPlayerToGame, props.players)
+            )
+            }
           >
             add player
           </button>
