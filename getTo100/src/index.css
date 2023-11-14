@@ -60,16 +60,14 @@ button:focus-visible {
 .gameArea {
   border: 2px solid #774360;
   border-radius: 5px;
-  /* width: fit-content; */
   margin: 0.5em;
-  /* position: absolute;
-  left: 50%;
-  transform: translateX(-50%); */
-
+  /* min-width: 10vw; */
 }
 
 .gamesContainer{
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 @media (prefers-color-scheme: light) {
