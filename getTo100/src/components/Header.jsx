@@ -1,5 +1,4 @@
 import { useState } from "react";
-import StartGame from "./StartGame";
 
 function Header(props) {
   const [playerName, setPlayerName] = useState("");
@@ -22,10 +21,8 @@ function Header(props) {
       };
       users.push(newUser);
       props.addPlayerToGame(newUser);
-      console.log(users);
-      const a = JSON.stringify(users);
-      console.log("g", a, typeof a);
-      localStorage.setItem("users", a);
+      const stringifiedUsers = JSON.stringify(users);
+      localStorage.setItem("users", stringifiedUsers);
     }
   }
 
