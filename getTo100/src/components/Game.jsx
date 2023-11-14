@@ -51,7 +51,7 @@ function Game(props) {
 
   const divEndGame = (
     <div>
-      <button>quit</button>
+      <button onClick={() => props.quitGame(props.index)}>quit</button>
       <button onClick={newGame}>start new game</button>
     </div>
   );
