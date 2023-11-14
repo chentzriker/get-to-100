@@ -17,29 +17,29 @@ function Game(props) {
   }
 
   function changeNumber(action) {
+    let num = number;
     if (action === "-") {
+      num = number - 1;
       setNumber((prev) => prev - 1);
-
     }
     if (action === "+") {
+      num = number + 1;
       setNumber((prev) => prev + 1);
     }
     if (action === "*") {
+      num = number * 2;
       setNumber((prev) => prev * 2);
     }
     if (action === "/") {
+      num = Math.floor(number / 2);
       setNumber((prev) => Math.floor(prev / 2));
     }
     setNumSteps((prev) => prev + 1);
     props.moveTurn();
-
-  }
-  function afterChange() {
-    console.log(number)
-    if (number === 100) {
+    if (num === 100) {
+      console.log("hi");
       setHasWon(true);
     }
-
   }
 
   const divEndGame = (
@@ -50,10 +50,18 @@ function Game(props) {
   );
   const buttons = (
     <div>
-      <button onClick={() => changeNumber("+")} onMouseUp={afterChange} disabled={!isTurn}>+1</button>
-      <button onClick={() => changeNumber("-")} disabled={!isTurn}>-1</button>
-      <button onClick={() => changeNumber("*")} disabled={!isTurn}>*2</button>
-      <button onClick={() => changeNumber("/")} disabled={!isTurn}>/2</button>
+      <button onClick={() => changeNumber("+")} disabled={!isTurn}>
+        +1
+      </button>
+      <button onClick={() => changeNumber("-")} disabled={!isTurn}>
+        -1
+      </button>
+      <button onClick={() => changeNumber("*")} disabled={!isTurn}>
+        *2
+      </button>
+      <button onClick={() => changeNumber("/")} disabled={!isTurn}>
+        /2
+      </button>
     </div>
   );
   return (
